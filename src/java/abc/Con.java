@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class Con {
 	 public static void main(String... args)
 	    {
-	    	new Con().balance(1000, 11);
+	    	
 	    }
    
     public void test()
@@ -142,12 +142,17 @@ public class Con {
 	        return bal;
 	    }
           
-    public void balance(int bal,int id)
+    public int balance(int bal,int id,int f)
     {
         int balance = 0;
         try {
             int am=checkBal(id);
-            bal=bal+am;
+            if(f==1)
+                bal=bal+am;
+            else if(f==0)
+                bal=am-bal;
+            if(bal<0)
+                throw new Exception();
             String bal1=String.valueOf(bal);
             System.out.println(id);
             
@@ -165,8 +170,9 @@ public class Con {
             }
         }catch (Exception e)
         {
-            System.out.println(e);
+            return 1;
         }
+        return 0;
     }
 
 }

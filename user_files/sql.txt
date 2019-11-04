@@ -1,0 +1,87 @@
+								SQL Query
+
+=> To start mysql
+	mysql -u root -p
+	root
+
+=> To show all databases
+	show Databases;
+
+=> TO Create table
+    CREATE TABLE table1 (
+        id int NOT NULL AUTO_INCREMENT,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255),
+    	Age int,
+ 	 PRIMARY KEY (id)
+    );
+
+
+=> To Use table
+	use table name
+	use table1;
+
+=> Show all data
+	select * from table1;
+	+-----+------------+---------------+------+
+	| ID  | FaseName   | LastName      | age  |
+	+-----+------------+---------------+------+
+	|   1 | Soumojoyti | Ganguly       |   22 |
+	|   2 | Smrity     | Banerjee      |   21 |
+	|   3 | Smrity     | Ganguly       |   21 |
+	|   4 | Sree       | Banerjee      |   18 |
+	| 100 | When       | Rooney        |   30 |
+	| 101 | Kiley      | Jenner        |   23 |
+	| 102 | Zalatan    | Ibrahimobeach |   36 |
+	+-----+------------+---------------+------+
+
+=> Fatch unic Data
+	select distinct LastName from table1;
+	+---------------+
+	| LastName      |
+	+---------------+
+	| Ganguly       |
+	| Banerjee      |
+	| Rooney        |
+	| Jenner        |
+	| Ibrahimobeach |
+	+---------------+
+
+=> desc table1;
+
+	+----------+-------------+------+-----+---------+----------------+
+	| Field    | Type        | Null | Key | Default | Extra          |
+	+----------+-------------+------+-----+---------+----------------+
+	| ID       | int(11)     | NO   | PRI | NULL    | auto_increment |
+	| FaseName | varchar(30) | YES  |     | NULL    |                |
+	| LastName | varchar(30) | YES  |     | NULL    |                |
+	| age      | int(11)     | YES  |     | NULL    |                |
+	+----------+-------------+------+-----+---------+----------------+
+
+=> select FaseName,age from table1;
+
+	+------------+------+
+	| FaseName   | age  |
+	+------------+------+
+	| Soumojoyti |   22 |
+	| Smrity     |   21 |
+	| Smrity     |   21 |
+	| Sree       |   18 |
+	| When       |   30 |
+	| Kiley      |   23 |
+	| Zalatan    |   36 |
+	+------------+------+
+
+=> select FaseName from table1 where LastName='ganguly';
+
+	+------------+
+	| FaseName   |
+	+------------+
+	| Soumojoyti |
+	| Smrity     |
+	+------------+
+
+=>Update Row
+	update table1
+    -> set age=23
+    -> where id=1;

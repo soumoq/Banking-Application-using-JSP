@@ -28,7 +28,9 @@
         
                 <form action="Deposit">
                 Enter amount <input type="number" name="depnum">
-            <input type="submit" value="Deposit">
+            <input type="submit" value="Deposit" name="dpbtn">
+                Enter amount <input type="number" name="depnum1">
+            <input type="submit" value="withdrawal" name="dpbtn">
             
         </form>
                 
@@ -36,11 +38,10 @@
             <input type="submit" value="Logout">
         </form>
                 
-        
-	
-	
-	
-	
+                <form action="upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" multiple/>
+            <input type="submit">
+        </form>
 
 </body>
 </html>
