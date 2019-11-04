@@ -24,7 +24,14 @@ public class Upload extends HttpServlet {
             List<FileItem> file= sf.parseRequest(request);
             for(FileItem item : file)
             {
-                item.write(new File("/home/mr3o5/NetBeansProjects/web2/user_files/"+item.getName()));
+                item.write(new File("/opt/lampp/htdocs/user_file/"+item.getName()));
+                
+                String itnm=item.getName();
+                String file_name=itnm;
+                String file_path="/opt/lampp/htdocs/user_file/"+itnm;
+                Con con=new Con();
+                int id=con.getId();
+                con.fileUp(id, file_name, file_path);
             }
             
             PrintWriter out=response.getWriter();

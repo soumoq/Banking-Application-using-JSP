@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class Con {
 	 public static void main(String... args)
 	    {
-	    	
+	    	new Con().fileUp(8, "mithi", "/misti/soumo");
 	    }
    
     public void test()
@@ -173,6 +173,26 @@ public class Con {
             return 1;
         }
         return 0;
+    }
+    
+    public void fileUp(int id,String file_name,String file_path)
+    {
+        try
+        {
+        Connection con=con();
+        String sql1="INSERT INTO `bank_file` (`file_id`, `file_name`, `file_path`, `id`) VALUES (NULL, ?, ?, ?);";
+        PreparedStatement ps=con.prepareStatement(sql1);
+	ps.setString(1,file_name);
+	ps.setString(2,file_path);
+        ps.setString(3,String.valueOf(id));
+        ps.executeUpdate();
+
+        
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
     }
 
 }
