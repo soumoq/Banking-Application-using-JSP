@@ -1,16 +1,9 @@
 package abc;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-
-import javax.servlet.ServletException;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
 
 @WebServlet("/login")
 
@@ -39,6 +32,7 @@ public class LoginRegister extends HttpServlet {
 			
 			Con con=new Con();
 			int i=con.insert(uName, uPass);
+                        con.setId(i);
 			//out.println("soumo: "+i);
 			
 			if(i==0)
@@ -53,6 +47,7 @@ public class LoginRegister extends HttpServlet {
 				request.setAttribute("uName", uName);
 				RequestDispatcher rd=  request.getRequestDispatcher("home");
 				rd.forward(request, response);
+                                
 			}
 			
 		}

@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class Con {
-	 public static void main(String[] args)
+	 public static void main(String... args)
 	    {
-	    	new Con().test();
+	    	new Con().balance(1000, 11);
 	    }
    
     public void test()
@@ -16,9 +16,17 @@ public class Con {
     	
         
     }
-    
+    private static int id1=0;
+    public void setId(int id)
+    {
+        this.id1=id;
+    }
+    public int getId()
+    {
+        return id1;
+    }
 	
-	private String pass="";
+    private String pass="";
     private String uname="root";
     private String url="jdbc:mysql://localhost:3308/test";
     public Connection connection;
@@ -133,5 +141,32 @@ public class Con {
 	        }
 	        return bal;
 	    }
+          
+    public void balance(int bal,int id)
+    {
+        int balance = 0;
+        try {
+            int am=checkBal(id);
+            bal=bal+am;
+            String bal1=String.valueOf(bal);
+            System.out.println(id);
+            
+            String update = "UPDATE `bank` SET `amount` = ? WHERE `bank`.`id` = "+id+";";
+            Connection con = con();
+            PreparedStatement ps = con.prepareStatement(update);
+            ps.setString(1, bal1);
+
+            int rs = ps.executeUpdate();
+            if (rs==1) {
+                    System.out.println("Amount updated");
+                //Afterlogin al=new Afterlogin();
+            } else {
+                System.out.println("failed");
+            }
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
 
 }

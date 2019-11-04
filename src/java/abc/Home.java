@@ -2,12 +2,14 @@ package abc;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 
 @WebServlet("/home")
@@ -27,19 +29,15 @@ public class Home extends HttpServlet {
 		Con con=new Con();
 		int bal=con.checkBal(i);
 		
-		String upBal=request.getParameter("bal");
-		String submit=request.getParameter("submit");
+               
 		
-		
-		request.setAttribute("bal", bal);
-		request.setAttribute("message", uName);
-		request.getRequestDispatcher("home.jsp").forward(request, response);
-		
-		if(submit.equals("Login"))
-		{
-			request.setAttribute("message", "wow");
-			request.getRequestDispatcher("home.jsp").forward(request, response);
-		}
+		HttpSession session=request.getSession();
+                    session.setAttribute("username", uName);
+                    session.setAttribute("bal", bal);
+                    response.sendRedirect("home.jsp");
+                
+                
+                
 		
 		
 		
